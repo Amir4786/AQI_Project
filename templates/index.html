@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="view point" content="width=device-width, initial-scale=1.0">
+    <title>AQI of Delhi</title>
+</head>
+<center>
+<body background-image:url('jmi.webp')>
+    <div style="color:red">
+        <form action="{{url_for('predict')}}" method="post">
+            <h2 style="color:blue">Fill the following AQI values:</h2>
+            <h3>PM2.5</h3><input id='first' name='PM2.5' required='required'>
+            <h3>PM10</h3><input id='second' name='PM10' required='required'>
+            <h3>NO2</h3><input id='third' name='NO2' required='required'>
+            <h3>NH3</h3><input id='fourth' name='NH3' required='required'>
+            <h3>SO2</h3><input id='fifth' name='SO2' required='required'>
+            <h3>CO</h3><input id='sixth' name='CO' required='required'>
+            <h3>Ozone</h3><input id='seventh' name='Ozone' required='required'>
+            <br><br><button id='sub' type='submit'>Calculate the avg. AQI of last 24hrs</button>
+        </form>
+        <h3>{{prediction_text}}</h3>
+    </div>
+</body>
+</center>
+<body>
+    <h2>By: Amir Khan</h2>
+    <h2>Under the Supervision of: Prof. Mohammed Sharif</h2>
+    <h2>Jamia Millia Islamia</h2>
+</body>
+</html>
