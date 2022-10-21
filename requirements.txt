@@ -1,0 +1,5 @@
+flask
+jsonify
+sklearn
+requests
+numpy
