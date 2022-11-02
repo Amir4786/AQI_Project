@@ -7,9 +7,10 @@
 </head>
 <center>
 <body background-image:url('jmi.webp')>
-    <div style="color:red">
+    <div style="color:darkblue">
         <form action="{{url_for('predict')}}" method="post">
-            <h2 style="color:blue">Fill the following AQI values:</h2>
+            <h2 style="color:rgba(255, 0, 0, 0.906)">Average AQI of Last 24hrs</h2>
+            <h3 style="color:cornflowerblue">All these values must be taken at 3:00 PM IST</h3>
             <h3>PM2.5</h3><input id='first' name='PM2.5' required='required'>
             <h3>PM10</h3><input id='second' name='PM10' required='required'>
             <h3>NO2</h3><input id='third' name='NO2' required='required'>
@@ -19,13 +20,14 @@
             <h3>Ozone</h3><input id='seventh' name='Ozone' required='required'>
             <br><br><button id='sub' type='submit'>Calculate the avg. AQI of last 24hrs</button>
         </form>
-        <h3>{{prediction_text}}</h3>
+        <h2 style="color: rgb(255, 34, 0)">{{prediction_text}}</h2>
+        <h2 style="color: maroon">{{status}}</h2>
     </div>
 </body>
 </center>
 <body>
-    <h2>By: Amir Khan</h2>
-    <h2>Under the Supervision of: Prof. Mohammed Sharif</h2>
-    <h2>Jamia Millia Islamia</h2>
+    <h2 style="color: rgb(48, 139, 46)">By: Amir Khan</h2>
+    <h2 style="color:rgb(48, 139, 46)">Under the Supervision of: Prof. Mohammed Sharif</h2>
+    <h2 style="color:rgb(48, 139, 46)">Jamia Millia Islamia</h2>
 </body>
 </html>
