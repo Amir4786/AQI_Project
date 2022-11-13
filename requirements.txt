@@ -3,3 +3,4 @@ jsonify
 sklearn
 requests
 numpy
+gunicorn
