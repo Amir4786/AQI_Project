@@ -5,6 +5,8 @@ import pickle
 import sklearn
 import numpy as np
 
+
+
 app= Flask(__name__)
 model= pickle.load(open("AQI_Delhi_Model.pkl","rb"))
 @app.route("/", methods=["POST","GET"])
