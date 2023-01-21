@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+import mysql.connector as c
 import jsonify
 import requests
 import pickle
@@ -10,6 +11,10 @@ model= pickle.load(open("AQI_Delhi_Model.pkl","rb"))
 @app.route("/", methods=["POST","GET"])
 def Home():
     return render_template("index.html")
+
+con= c.connect(host='localhost',user='root',password='@Amir123',database='college')
+cursor= con.cursor(buffered=True)
+
 @app.route("/predict", methods=["POST","GET"])
 def predict():
     if request.method=="POST":
@@ -21,6 +26,12 @@ def predict():
         CO= int(request.form["CO"])
         Ozone= int(request.form["Ozone"])
         prediction= int(model.predict([[PM25,PM100,NO2,NH3,SO2,CO,Ozone]]))
+
+        query=("INSERT INTO AQI_INDEX VALUES(%s,%s,%s,%s,%s,%s,%s,%s)")
+        values=(PM25,PM100,NO2,NH3,SO2,CO,Ozone,prediction)
+        cursor.execute(query,values)
+        con.commit()
+
         if prediction<=50:
             return render_template("index.html",prediction_text="AQI= {}".format(prediction),status="Status: Good")
         elif prediction>50 and prediction<=100:
@@ -33,7 +44,10 @@ def predict():
             return render_template("index.html",prediction_text="AQI= {}".format(prediction),status="Status: Very Poor")
         elif prediction>400:
             return render_template("index.html",prediction_text="AQI= {}".format(prediction),status="Status: Severe")
+
     else:
         return render_template("index.html")
+
+
 if __name__=="__main__":
     app.run(debug=True)

@@ -4,3 +4,4 @@ sklearn
 requests
 numpy
 gunicorn
+mysql-connector-python
